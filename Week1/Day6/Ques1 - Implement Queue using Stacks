@@ -1,0 +1,35 @@
+Code in C++ :-
+class MyQueue {
+public:
+    stack<int> ip;
+    stack<int> op;
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        ip.push(x);        
+    }
+    
+    int pop() {
+        if (op.empty())
+        while (ip.size())
+            op.push(ip.top()), ip.pop();
+
+        int x = op.top();
+        op.pop();
+        return x;       
+    }
+    
+    int peek() {
+        if (op.empty())
+        while (ip.size())
+            op.push(ip.top()), ip.pop();
+        return op.top();    
+    }
+    
+    bool empty() {
+        return op.empty() && ip.empty();
+        
+    }
+};

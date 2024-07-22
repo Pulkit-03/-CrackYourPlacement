@@ -1,0 +1,24 @@
+Code in C++ :-
+class Solution {
+public:
+    void dfs(int row, int col, vector<vector<int>> &ans, vector<vector<int>> &image, int newColour, int iniColour){
+        ans[row][col] = newColour;
+        int m = image.size();
+        int n = image[0].size();
+        int drow[] = {-1,0,1,0}, dcol[] = {0,1,0,-1};
+        for(int i=0; i<4; i++){
+            int nrow = row + drow[i];
+            int ncol = col + dcol[i];
+            if(nrow>=0 && nrow<m && ncol>=0 && ncol<n 
+            && image[nrow][ncol] == iniColour && ans[nrow][ncol] != newColour){
+                dfs(nrow,ncol,ans,image,newColour,iniColour);
+            }
+        }
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int iniColour = image[sr][sc];
+        vector<vector<int>> ans = image;
+        dfs(sr ,sc ,ans ,image ,color, iniColour);
+        return ans;
+    }
+};

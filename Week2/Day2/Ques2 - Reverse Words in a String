@@ -1,0 +1,49 @@
+COde in C++ :-
+class Solution {
+public:
+    string reverseWords(string s) {
+        //when there is no such constraint on the spaces 
+        stack <string> st;
+        string str="";
+        s+=" ";
+        for(int i =0; i<s.length(); i++){
+            if(s[i]==' '){
+                st.push(str);
+                str="";
+            }
+            else str+=s[i];
+        }
+        string ans ="";
+        while(st.size()!=1){
+            ans+=st.top()+" ";
+            st.pop();
+        }
+        ans = ans + st.top();
+        return ans;
+
+        //best approach 
+        // reverse(s.begin(), s.end());
+        // int right=0, left=0, i=0;
+        // int n =s.size();
+        // while(i<n){
+        //     while(i<n && s[i]==' '){
+        //         i++;
+        //         //for skipping white spaces
+        //     }
+        //     if(i==n) break;
+        //     while(i<n && s[i]!=' '){
+        //         s[right]=s[i];
+        //         right++;
+        //         i++;
+        //     }
+        //     reverse(s.begin()+left,s.begin()+right);
+        //     s[right++]=' ';
+        //     left = right;
+        //     i++;
+
+        // }
+        // s.resize(right-1);
+        // return s;
+        
+    }
+};

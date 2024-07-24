@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int n = nums.size();
+        int count = 0;
+        unordered_map<int, int> mpp;
+        mpp[0] = 1;
+        int sum = 0;
+        for (int num : nums) {
+            // update the prefix sum
+            sum += num;
+
+            // calculate remainder of prefix sum divided by k
+            int mod = sum % k;
+
+            // adjusting -ve remainders
+            if (mod < 0) {
+                mod += k;
+            }
+
+            // remainder seen before add the number of times it has been seen to
+            // count
+            if (mpp.find(mod) != mpp.end()) {
+                count += mpp[mod];
+                mpp[mod] += 1;
+            } else {
+                mpp[mod] = 1;
+            }
+        }
+        return count;
+    }
+};
